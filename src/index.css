@@ -21,6 +21,7 @@ body {
   font-weight: 400;
   padding: 2rem 5% 1rem;
   height: 100vh;
+  color: var(--gray1);
 }
 
 .row {

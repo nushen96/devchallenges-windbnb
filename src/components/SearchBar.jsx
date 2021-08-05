@@ -15,6 +15,12 @@ const SearchBarContainer = styled.div`
   `}
 `;
 
+const GlobalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+`;
+
 const SearchBarSubcontainer = styled.div`
   padding: 1rem;
   border-left: 1px solid #f2f2f2;
@@ -65,29 +71,29 @@ const SearchBarSubcontainer = styled.div`
 
 const SearchBar = (props) => {
   return (
-    <SearchBarContainer {...props}>
-      <SearchBarSubcontainer {...props}>
-        <input
-          onFocus={() => props.openSearchBar()}
-          type="text"
-          placeholder="Search a city"
-        />
-      </SearchBarSubcontainer>
-      <SearchBarSubcontainer {...props}>
-        <input
-          onFocus={() => props.openSearchBar()}
-          type="text"
-          placeholder="Add guests"
-        />
-      </SearchBarSubcontainer>
-      <SearchBarSubcontainer {...props}>
-        <button>
-          <UilReact
-            color={props.isSearchBarOpened ? "#FFF" : "#EB5757"}
-          ></UilReact>
-        </button>
-      </SearchBarSubcontainer>
-    </SearchBarContainer>
+      <SearchBarContainer {...props}>
+        <SearchBarSubcontainer {...props}>
+          <input
+            onFocus={() => props.openSearchBar()}
+            type="text"
+            placeholder="Search a city"
+          />
+        </SearchBarSubcontainer>
+        <SearchBarSubcontainer {...props}>
+          <input
+            onFocus={() => props.openSearchBar()}
+            type="text"
+            placeholder="Add guests"
+          />
+        </SearchBarSubcontainer>
+        <SearchBarSubcontainer {...props}>
+          <button>
+            <UilReact
+              color={props.isSearchBarOpened ? "#FFF" : "#EB5757"}
+            ></UilReact>
+          </button>
+        </SearchBarSubcontainer>
+      </SearchBarContainer>
   );
 };
 
