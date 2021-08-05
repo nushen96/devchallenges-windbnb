@@ -16,7 +16,7 @@ const NavBar = styled.nav`
     width: 100%;
     height: fit-content;
     background-color: #fff;
-    min-height: 30vh;
+    min-height: 40vh;
     align-items: flex-start;
     padding: 2rem 5% 1rem;
   `}

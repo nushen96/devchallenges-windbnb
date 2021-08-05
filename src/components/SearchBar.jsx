@@ -9,7 +9,8 @@ const SearchBarContainer = styled.div`
   ${(props) =>
     props.isSearchBarOpened &&
     `
-    max-width: unset;
+    max-width: 1280px;
+    margin: 0 auto;
     width: 100%;
   `}
 `;
@@ -39,6 +40,20 @@ const SearchBarSubcontainer = styled.div`
     cursor: pointer;
     border: none;
     background-color: transparent;
+    ${(props) =>
+      props.isSearchBarOpened &&
+      `
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background-color: #EB5757;
+      color: #fff;
+      border-radius: 1rem;
+      gap: 0.5rem;
+      &::after {
+        content: "Search";
+      }
+    `}
   }
 
   &:first-child,
@@ -58,16 +73,18 @@ const SearchBar = (props) => {
           placeholder="Search a city"
         />
       </SearchBarSubcontainer>
-      <SearchBarSubcontainer>
+      <SearchBarSubcontainer {...props}>
         <input
           onFocus={() => props.openSearchBar()}
           type="text"
           placeholder="Add guests"
         />
       </SearchBarSubcontainer>
-      <SearchBarSubcontainer>
+      <SearchBarSubcontainer {...props}>
         <button>
-          <UilReact color="#EB5757"></UilReact>
+          <UilReact
+            color={props.isSearchBarOpened ? "#FFF" : "#EB5757"}
+          ></UilReact>
         </button>
       </SearchBarSubcontainer>
     </SearchBarContainer>
