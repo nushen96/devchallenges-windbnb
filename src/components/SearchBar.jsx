@@ -6,6 +6,12 @@ const SearchBarContainer = styled.div`
   display: flex;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
   max-width: 35%;
+  ${(props) =>
+    props.isSearchBarOpened &&
+    `
+    max-width: unset;
+    width: 100%;
+  `}
 `;
 
 const SearchBarSubcontainer = styled.div`
@@ -15,6 +21,13 @@ const SearchBarSubcontainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  ${(props) =>
+    props.isSearchBarOpened &&
+    `
+    width: 100%;
+    flex: 1;
+`}
 
   & > input {
     width: 100%;
@@ -35,14 +48,22 @@ const SearchBarSubcontainer = styled.div`
   }
 `;
 
-const SearchBar = () => {
+const SearchBar = (props) => {
   return (
-    <SearchBarContainer>
-      <SearchBarSubcontainer>
-        <input type="text" placeholder="Search a city" />
+    <SearchBarContainer {...props}>
+      <SearchBarSubcontainer {...props}>
+        <input
+          onFocus={() => props.openSearchBar()}
+          type="text"
+          placeholder="Search a city"
+        />
       </SearchBarSubcontainer>
       <SearchBarSubcontainer>
-        <input type="text" placeholder="Add guests" />
+        <input
+          onFocus={() => props.openSearchBar()}
+          type="text"
+          placeholder="Add guests"
+        />
       </SearchBarSubcontainer>
       <SearchBarSubcontainer>
         <button>
