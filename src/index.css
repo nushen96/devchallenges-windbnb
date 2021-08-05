@@ -1,5 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
+:root {
+  --primary: #EB5757;
+  --primary-light: rgba(235, 87, 87, 0.72);
+  --gray1: #333;
+  --gray2: #4f4f4f;
+  --gray3: #828282;
+}
 *,
 *::before,
 *::after {
