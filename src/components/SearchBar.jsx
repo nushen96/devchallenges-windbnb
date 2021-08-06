@@ -15,11 +15,11 @@ const SearchBarContainer = styled.div`
   `}
 `;
 
-const GlobalContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-`;
+const SearchFormContainer = styled.div`
+    display:flex;
+    flex-direction: column;
+    gap: 2rem;
+`
 
 const SearchBarSubcontainer = styled.div`
   padding: 1rem;
