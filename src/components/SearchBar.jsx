@@ -15,7 +15,7 @@ const SearchBarContainer = styled.div`
   `}
 `;
 
-const SearchFormContainer = styled.div`
+const SearchFormElement = styled.div`
     display:flex;
     flex-direction: column;
     gap: 2rem;
@@ -72,6 +72,7 @@ const SearchBarSubcontainer = styled.div`
 const SearchBar = (props) => {
   return (
       <SearchBarContainer {...props}>
+        <SearchFormElement>
         <SearchBarSubcontainer {...props}>
           <input
             onFocus={() => props.openSearchBar()}
@@ -79,6 +80,8 @@ const SearchBar = (props) => {
             placeholder="Search a city"
           />
         </SearchBarSubcontainer>
+        </SearchFormElement>
+        <SearchFormElement>
         <SearchBarSubcontainer {...props}>
           <input
             onFocus={() => props.openSearchBar()}
@@ -86,6 +89,7 @@ const SearchBar = (props) => {
             placeholder="Add guests"
           />
         </SearchBarSubcontainer>
+        </SearchFormElement>
         <SearchBarSubcontainer {...props}>
           <button>
             <UilReact
