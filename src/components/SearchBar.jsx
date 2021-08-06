@@ -16,10 +16,11 @@ const SearchBarContainer = styled.div`
 `;
 
 const SearchFormElement = styled.div`
-    display:flex;
-    flex-direction: column;
-    gap: 2rem;
-`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  flex: 1;
+`;
 
 const SearchBarSubcontainer = styled.div`
   padding: 1rem;
@@ -69,10 +70,26 @@ const SearchBarSubcontainer = styled.div`
   }
 `;
 
+const SearchBarDetailsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+`;
+
+const GlobalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  ${(props) => props.isSearchBarOpened && `width: 100%;`}
+`;
+
 const SearchBar = (props) => {
   return (
+    <GlobalContainer>
       <SearchBarContainer {...props}>
-        <SearchFormElement>
         <SearchBarSubcontainer {...props}>
           <input
             onFocus={() => props.openSearchBar()}
@@ -80,8 +97,6 @@ const SearchBar = (props) => {
             placeholder="Search a city"
           />
         </SearchBarSubcontainer>
-        </SearchFormElement>
-        <SearchFormElement>
         <SearchBarSubcontainer {...props}>
           <input
             onFocus={() => props.openSearchBar()}
@@ -89,7 +104,6 @@ const SearchBar = (props) => {
             placeholder="Add guests"
           />
         </SearchBarSubcontainer>
-        </SearchFormElement>
         <SearchBarSubcontainer {...props}>
           <button>
             <UilReact
@@ -98,6 +112,14 @@ const SearchBar = (props) => {
           </button>
         </SearchBarSubcontainer>
       </SearchBarContainer>
+      {props.isSearchBarOpened && (
+        <SearchBarDetailsContainer>
+          <div>a</div>
+          <div>b</div>
+          <div>c</div>
+        </SearchBarDetailsContainer>
+      )}
+    </GlobalContainer>
   );
 };
 
