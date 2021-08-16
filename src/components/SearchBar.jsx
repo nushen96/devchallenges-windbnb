@@ -79,16 +79,12 @@ const SearchBarDetailsContainer = styled.div`
 `;
 
 const GlobalContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
   ${(props) => props.isSearchBarOpened && `width: 100%;`}
 `;
 
 const SearchBar = (props) => {
   return (
-    <GlobalContainer>
+    <>
       <SearchBarContainer {...props}>
         <SearchBarSubcontainer {...props}>
           <input
@@ -119,7 +115,7 @@ const SearchBar = (props) => {
           <div>c</div>
         </SearchBarDetailsContainer>
       )}
-    </GlobalContainer>
+    </>
   );
 };
 
