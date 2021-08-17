@@ -74,6 +74,9 @@ const SearchBarDetailsContainer = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   width: 100%;
+  & > div {
+    flex: 1;
+  }
 `;
 
 const GlobalContainer = styled.div`
