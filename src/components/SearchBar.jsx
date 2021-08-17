@@ -1,18 +1,11 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import UilReact from "@iconscout/react-unicons/icons/uil-search";
 
 const SearchBarContainer = styled.div`
   border-radius: 1rem;
   display: flex;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
-  max-width: 35%;
-  ${(props) =>
-    props.isSearchBarOpened &&
-    `
-    max-width: 1280px;
-    margin: 0 auto;
-    width: 100%;
-  `}
+  flex: 1;
 `;
 
 const SearchFormElement = styled.div`
@@ -20,6 +13,11 @@ const SearchFormElement = styled.div`
   flex-direction: column;
   gap: 2rem;
   flex: 1;
+  ${(props) =>
+    props.isSearchBarOpened &&
+    `
+    flex: 0;
+`}
 `;
 
 const SearchBarSubcontainer = styled.div`
@@ -79,12 +77,21 @@ const SearchBarDetailsContainer = styled.div`
 `;
 
 const GlobalContainer = styled.div`
-  ${(props) => props.isSearchBarOpened && `width: 100%;`}
+  display: flex;
+  max-width: 35%;
+  ${(props) =>
+    props.isSearchBarOpened &&
+    `
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;`}
 `;
 
 const SearchBar = (props) => {
   return (
-    <>
+    <GlobalContainer {...props}>
       <SearchBarContainer {...props}>
         <SearchBarSubcontainer {...props}>
           <input
@@ -115,7 +122,7 @@ const SearchBar = (props) => {
           <div>c</div>
         </SearchBarDetailsContainer>
       )}
-    </>
+    </GlobalContainer>
   );
 };
 

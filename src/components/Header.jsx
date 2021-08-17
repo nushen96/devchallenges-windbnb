@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import headerLogo from "../resources/images/logo.png";
 import SearchBar from "./SearchBar";
 
