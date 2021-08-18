@@ -1,12 +1,18 @@
 import styled from "styled-components/macro";
 import SearchIcon from "@iconscout/react-unicons/icons/uil-search";
 import PinIcon from "@iconscout/react-unicons/icons/uil-map-marker";
+import { useState } from "react";
 
 const cities = [
   "Helsinki, Findland",
   "Turku, Findland",
   "Oulu, Findland",
   "Vassa, Finland",
+];
+
+const categories = [
+  { title: "Adults", description: "Ages 13 or above" },
+  { title: "Children", description: "Ages 2 - 12" },
 ];
 
 const SearchBarContainer = styled.div`
@@ -110,6 +116,51 @@ const GlobalContainer = styled.div`
   width: 100%;`}
 `;
 
+const GuestCategoryContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const GuestControllerButton = styled.button`
+  width: 1.5rem;
+  height: 1.5rem;
+  text-align: center;
+  background-color: transparent;
+  border-radius: 0.2rem;
+  outline: none;
+  border: 1px solid var(--gray3);
+  color: var(--gray3);
+  cursor: pointer;
+`;
+
+const GuestCategory = ({ title, description }) => {
+  const [ guestCount, setGuestCount ] = useState(0);
+  const countGuests = (value) => {
+    let newValue = guestCount + value;
+    if (newValue >= 0) {
+      setGuestCount(newValue);
+    }
+  };
+  return (
+    <GuestCategoryContainer>
+      <div className="category-title-container">
+        <h3>{title}</h3>
+        <p style={{color: "var(--gray3)"}}>{description}</p>
+      </div>
+      <div style={{display: "flex", gap: "1rem"}} className="category-controller-container">
+        <GuestControllerButton onClick={() => countGuests(-1)}>
+          -
+        </GuestControllerButton>
+        <p>{guestCount}</p>
+        <GuestControllerButton onClick={() => countGuests(1)}>
+          +
+        </GuestControllerButton>
+      </div>
+    </GuestCategoryContainer>
+  );
+};
+
 const SearchBar = (props) => {
   return (
     <GlobalContainer {...props}>
@@ -140,17 +191,24 @@ const SearchBar = (props) => {
         <SearchBarDetailsContainer>
           <div>
             {cities.map((city) => (
-              <>
-                <p
-                  style={{ cursor: "pointer" }}
-                  onClick={() => console.log(city)}
-                >
-                  <PinIcon></PinIcon> {city}
-                </p>
-              </>
+              <p
+                key={city}
+                style={{ cursor: "pointer" }}
+                onClick={() => console.log(city)}
+              >
+                <PinIcon></PinIcon> {city}
+              </p>
             ))}
           </div>
-          <div>b</div>
+          <div>
+            {categories.map((category) => (
+              <GuestCategory
+                key={category.title}
+                title={category.title}
+                description={category.description}
+              ></GuestCategory>
+            ))}
+          </div>
           <div>c</div>
         </SearchBarDetailsContainer>
       )}
