@@ -1,5 +1,13 @@
 import styled from "styled-components/macro";
-import UilReact from "@iconscout/react-unicons/icons/uil-search";
+import SearchIcon from "@iconscout/react-unicons/icons/uil-search";
+import PinIcon from "@iconscout/react-unicons/icons/uil-map-marker";
+
+const cities = [
+  "Helsinki, Findland",
+  "Turku Findland",
+  "Oulu Findland",
+  "Vassa, Finland",
+];
 
 const SearchBarContainer = styled.div`
   border-radius: 1rem;
@@ -76,6 +84,16 @@ const SearchBarDetailsContainer = styled.div`
   width: 100%;
   & > div {
     flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  & > div p {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 `;
 
@@ -112,15 +130,26 @@ const SearchBar = (props) => {
         </SearchBarSubcontainer>
         <SearchBarSubcontainer {...props}>
           <button>
-            <UilReact
+            <SearchIcon
               color={props.isSearchBarOpened ? "#FFF" : "#EB5757"}
-            ></UilReact>
+            ></SearchIcon>
           </button>
         </SearchBarSubcontainer>
       </SearchBarContainer>
       {props.isSearchBarOpened && (
         <SearchBarDetailsContainer>
-          <div>a</div>
+          <div>
+            {cities.map((city) => (
+              <>
+                <p
+                  style={{ cursor: "pointer" }}
+                  onClick={() => console.log(city)}
+                >
+                  <PinIcon></PinIcon> {city}
+                </p>
+              </>
+            ))}
+          </div>
           <div>b</div>
           <div>c</div>
         </SearchBarDetailsContainer>
