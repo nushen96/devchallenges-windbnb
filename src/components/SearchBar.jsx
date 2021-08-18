@@ -4,8 +4,8 @@ import PinIcon from "@iconscout/react-unicons/icons/uil-map-marker";
 
 const cities = [
   "Helsinki, Findland",
-  "Turku Findland",
-  "Oulu Findland",
+  "Turku, Findland",
+  "Oulu, Findland",
   "Vassa, Finland",
 ];
 
