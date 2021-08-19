@@ -52,6 +52,15 @@ const SearchBarSubcontainer = styled.div`
     `
     width: 100%;
     flex: 1;
+    &.input-subcontainer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    &.input-subcontainer::before {
+      content: "${props.containerTitle}";
+      font-size: 80%;
+      font-weight: 600;
+    }
 `}
 
   & > input {
@@ -178,14 +187,14 @@ const SearchBar = (props) => {
   return (
     <GlobalContainer {...props}>
       <SearchBarContainer {...props}>
-        <SearchBarSubcontainer {...props} className="input-subcontainer">
+        <SearchBarSubcontainer {...props} containerTitle="LOCATION" className="input-subcontainer">
           <input
             onFocus={() => props.openSearchBar()}
             type="text"
             placeholder="Search a city"
           />
         </SearchBarSubcontainer>
-        <SearchBarSubcontainer {...props} className="input-subcontainer">
+        <SearchBarSubcontainer {...props} containerTitle="GUESTS" className="input-subcontainer">
           <p onClick={() => props.openSearchBar()}>Add guests</p>
         </SearchBarSubcontainer>
         <SearchBarSubcontainer {...props}>
