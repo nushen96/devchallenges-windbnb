@@ -227,7 +227,7 @@ const SearchBar = (props) => {
         >
           <p
           >
-            Add guests
+            {props.totalGuests>0 ? `${props.totalGuests} guest${props.totalGuests>1?"s":""}` : "Add guests"}
           </p>
         </SearchBarSubcontainer>
         <SearchBarSubcontainer {...props}>
