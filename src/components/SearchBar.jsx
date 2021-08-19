@@ -219,12 +219,12 @@ const SearchBar = (props) => {
           active={props.selectedSubcontainer === "guests"}
           containerTitle="GUESTS"
           className="input-subcontainer"
+          onClick={() => {
+            props.openSearchBar();
+            props.setSelectedSubcontainer("guests");
+          }}
         >
           <p
-            onClick={() => {
-              props.openSearchBar();
-              props.setSelectedSubcontainer("guests");
-            }}
           >
             Add guests
           </p>
