@@ -6,6 +6,8 @@ import { useState } from "react";
 function App() {
   const [isSearchBarOpened, setIsSearchBarOpened] = useState(false);
   const [selectedSubcontainer, setSelectedSubcontainer] = useState("");
+  const [locationQuery, setLocationQuery] = useState("");
+  const [totalGuests, setTotalGuests] = useState(0);
 
   function openSearchBar() {
     setIsSearchBarOpened(true);
@@ -29,6 +31,10 @@ function App() {
         isSearchBarOpened={isSearchBarOpened}
         selectedSubcontainer={selectedSubcontainer}
         setSelectedSubcontainer={setSelectedSubcontainer}
+        totalGuests={totalGuests}
+        setTotalGuests={setTotalGuests}
+        locationQuery={locationQuery}
+        setLocationQuery={setLocationQuery}
       ></Header>
     </>
   );

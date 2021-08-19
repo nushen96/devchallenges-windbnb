@@ -165,12 +165,13 @@ const GuestControllerButton = styled.button`
   cursor: pointer;
 `;
 
-const GuestCategory = ({ title, description }) => {
+const GuestCategory = ({ title, description, totalGuests, setTotalGuests }) => {
   const [guestCount, setGuestCount] = useState(0);
   const countGuests = (value) => {
     let newValue = guestCount + value;
     if (newValue >= 0) {
       setGuestCount(newValue);
+      setTotalGuests(totalGuests+value);
     }
   };
   return (
@@ -256,6 +257,8 @@ const SearchBar = (props) => {
                 key={category.title}
                 title={category.title}
                 description={category.description}
+                totalGuests={props.totalGuests}
+                setTotalGuests={props.setTotalGuests}
               ></GuestCategory>
             ))}
           </div>
