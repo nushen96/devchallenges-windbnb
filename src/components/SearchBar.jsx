@@ -42,6 +42,11 @@ const SearchBarSubcontainer = styled.div`
   align-items: center;
   justify-content: center;
 
+  &.input-subcontainer {
+    flex: 1;
+    justify-content: flex-start;
+  }
+
   ${(props) =>
     props.isSearchBarOpened &&
     `
@@ -53,6 +58,11 @@ const SearchBarSubcontainer = styled.div`
     width: 100%;
     border: none;
     outline: none;
+  }
+
+  & > p {
+    color: var(--gray3);
+    font-size: 90%;
   }
 
   & > button {
@@ -135,7 +145,7 @@ const GuestControllerButton = styled.button`
 `;
 
 const GuestCategory = ({ title, description }) => {
-  const [ guestCount, setGuestCount ] = useState(0);
+  const [guestCount, setGuestCount] = useState(0);
   const countGuests = (value) => {
     let newValue = guestCount + value;
     if (newValue >= 0) {
@@ -146,9 +156,12 @@ const GuestCategory = ({ title, description }) => {
     <GuestCategoryContainer>
       <div className="category-title-container">
         <h3>{title}</h3>
-        <p style={{color: "var(--gray3)"}}>{description}</p>
+        <p style={{ color: "var(--gray3)" }}>{description}</p>
       </div>
-      <div style={{display: "flex", gap: "1rem"}} className="category-controller-container">
+      <div
+        style={{ display: "flex", gap: "1rem" }}
+        className="category-controller-container"
+      >
         <GuestControllerButton onClick={() => countGuests(-1)}>
           -
         </GuestControllerButton>
@@ -165,19 +178,15 @@ const SearchBar = (props) => {
   return (
     <GlobalContainer {...props}>
       <SearchBarContainer {...props}>
-        <SearchBarSubcontainer {...props}>
+        <SearchBarSubcontainer {...props} className="input-subcontainer">
           <input
             onFocus={() => props.openSearchBar()}
             type="text"
             placeholder="Search a city"
           />
         </SearchBarSubcontainer>
-        <SearchBarSubcontainer {...props}>
-          <input
-            onFocus={() => props.openSearchBar()}
-            type="text"
-            placeholder="Add guests"
-          />
+        <SearchBarSubcontainer {...props} className="input-subcontainer">
+          <p onClick={() => props.openSearchBar()}>Add guests</p>
         </SearchBarSubcontainer>
         <SearchBarSubcontainer {...props}>
           <button>
@@ -209,7 +218,7 @@ const SearchBar = (props) => {
               ></GuestCategory>
             ))}
           </div>
-          <div>c</div>
+          <div></div>
         </SearchBarDetailsContainer>
       )}
     </GlobalContainer>
