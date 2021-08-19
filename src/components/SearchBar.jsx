@@ -240,7 +240,7 @@ const SearchBar = (props) => {
       {props.isSearchBarOpened && (
         <SearchBarDetailsContainer>
           <div>
-            {cities.map((city) => (
+            {props.selectedSubcontainer==="location" && cities.map((city) => (
               <p
                 key={city}
                 style={{ cursor: "pointer" }}
@@ -251,7 +251,7 @@ const SearchBar = (props) => {
             ))}
           </div>
           <div>
-            {categories.map((category) => (
+            {props.selectedSubcontainer==="guests" && categories.map((category) => (
               <GuestCategory
                 key={category.title}
                 title={category.title}
