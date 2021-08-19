@@ -55,6 +55,15 @@ const SearchBarSubcontainer = styled.div`
     &.input-subcontainer {
       align-items: flex-start;
       flex-direction: column;
+      ${
+        props.active &&
+        `
+        border: 1px solid var(--gray1);
+        border-radius: 1rem;
+        border-left: 1px solid var(--gray1);
+        border-right: 1px solid var(--gray1);
+      `
+      }
     }
     &.input-subcontainer::before {
       content: "${props.containerTitle}";
@@ -93,12 +102,15 @@ const SearchBarSubcontainer = styled.div`
       }
     `}
   }
-
+  ${(props) =>
+    !props.active &&
+    `
   &:first-child,
   &:last-child {
     border-left: none;
     border-right: none;
   }
+  `}
 `;
 
 const SearchBarDetailsContainer = styled.div`
@@ -187,15 +199,35 @@ const SearchBar = (props) => {
   return (
     <GlobalContainer {...props}>
       <SearchBarContainer {...props}>
-        <SearchBarSubcontainer {...props} containerTitle="LOCATION" className="input-subcontainer">
+        <SearchBarSubcontainer
+          {...props}
+          active={props.selectedSubcontainer === "location"}
+          containerTitle="LOCATION"
+          className="input-subcontainer"
+        >
           <input
-            onFocus={() => props.openSearchBar()}
+            onFocus={() => {
+              props.openSearchBar();
+              props.setSelectedSubcontainer("location");
+            }}
             type="text"
             placeholder="Search a city"
           />
         </SearchBarSubcontainer>
-        <SearchBarSubcontainer {...props} containerTitle="GUESTS" className="input-subcontainer">
-          <p onClick={() => props.openSearchBar()}>Add guests</p>
+        <SearchBarSubcontainer
+          {...props}
+          active={props.selectedSubcontainer === "guests"}
+          containerTitle="GUESTS"
+          className="input-subcontainer"
+        >
+          <p
+            onClick={() => {
+              props.openSearchBar();
+              props.setSelectedSubcontainer("guests");
+            }}
+          >
+            Add guests
+          </p>
         </SearchBarSubcontainer>
         <SearchBarSubcontainer {...props}>
           <button>

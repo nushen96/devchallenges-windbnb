@@ -5,6 +5,7 @@ import { useState } from "react";
 
 function App() {
   const [isSearchBarOpened, setIsSearchBarOpened] = useState(false);
+  const [selectedSubcontainer, setSelectedSubcontainer] = useState("");
 
   function openSearchBar() {
     setIsSearchBarOpened(true);
@@ -16,11 +17,18 @@ function App() {
   return (
     <>
       {isSearchBarOpened && (
-        <Overlay onClick={() => closeSearchBar()}></Overlay>
+        <Overlay
+          onClick={() => {
+            closeSearchBar();
+            setSelectedSubcontainer("");
+          }}
+        ></Overlay>
       )}
       <Header
         openSearchBar={openSearchBar}
         isSearchBarOpened={isSearchBarOpened}
+        selectedSubcontainer={selectedSubcontainer}
+        setSelectedSubcontainer={setSelectedSubcontainer}
       ></Header>
     </>
   );
