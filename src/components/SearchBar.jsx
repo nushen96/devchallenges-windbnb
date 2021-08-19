@@ -79,7 +79,7 @@ const SearchBarSubcontainer = styled.div`
   }
 
   & > p {
-    color: var(--gray3);
+    color: ${props => props.totalGuests>0 ? "inherit":"var(--gray3)"};
     font-size: 90%;
   }
 
