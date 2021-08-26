@@ -247,7 +247,7 @@ const SearchBar = (props) => {
               <p
                 key={city}
                 style={{ cursor: "pointer" }}
-                onClick={() => console.log(city)}
+                onClick={() => props.setSelectedLocation(city)}
               >
                 <PinIcon></PinIcon> {city}
               </p>
