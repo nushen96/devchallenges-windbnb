@@ -213,6 +213,8 @@ const SearchBar = (props) => {
             }}
             type="text"
             placeholder="Search a city"
+            onChange={e => props.setLocationQuery(e.target.value)}
+            value={props.locationQuery}
           />
         </SearchBarSubcontainer>
         <SearchBarSubcontainer
