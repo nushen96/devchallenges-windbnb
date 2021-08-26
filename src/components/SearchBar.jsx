@@ -165,13 +165,12 @@ const GuestControllerButton = styled.button`
   cursor: pointer;
 `;
 
-const GuestCategory = ({ title, description, totalGuests, setTotalGuests }) => {
-  const [guestCount, setGuestCount] = useState(0);
+const GuestCategory = ({ title, description, guests, setGuests }) => {
+  const categoryKey = title.toLowerCase();
   const countGuests = (value) => {
-    let newValue = guestCount + value;
+    let newValue = guests[categoryKey] + value;
     if (newValue >= 0) {
-      setGuestCount(newValue);
-      setTotalGuests(totalGuests+value);
+      setGuests({...guests, [categoryKey]:newValue});
     }
   };
   return (
@@ -187,7 +186,7 @@ const GuestCategory = ({ title, description, totalGuests, setTotalGuests }) => {
         <GuestControllerButton onClick={() => countGuests(-1)}>
           -
         </GuestControllerButton>
-        <p>{guestCount}</p>
+        <p>{guests[categoryKey]}</p>
         <GuestControllerButton onClick={() => countGuests(1)}>
           +
         </GuestControllerButton>
@@ -197,6 +196,7 @@ const GuestCategory = ({ title, description, totalGuests, setTotalGuests }) => {
 };
 
 const SearchBar = (props) => {
+  const totalGuests = Object.values(props.guests).reduce((a, b) => a + b)
   return (
     <GlobalContainer {...props}>
       <SearchBarContainer {...props}>
@@ -227,7 +227,7 @@ const SearchBar = (props) => {
         >
           <p
           >
-            {props.totalGuests>0 ? `${props.totalGuests} guest${props.totalGuests>1?"s":""}` : "Add guests"}
+            {totalGuests>0 ? `${totalGuests} guest${totalGuests>1?"s":""}` : "Add guests"}
           </p>
         </SearchBarSubcontainer>
         <SearchBarSubcontainer {...props}>
@@ -257,8 +257,8 @@ const SearchBar = (props) => {
                 key={category.title}
                 title={category.title}
                 description={category.description}
-                totalGuests={props.totalGuests}
-                setTotalGuests={props.setTotalGuests}
+                guests={props.guests}
+                setGuests={props.setGuests}
               ></GuestCategory>
             ))}
           </div>

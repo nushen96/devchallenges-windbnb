@@ -7,7 +7,7 @@ function App() {
   const [isSearchBarOpened, setIsSearchBarOpened] = useState(false);
   const [selectedSubcontainer, setSelectedSubcontainer] = useState("");
   const [locationQuery, setLocationQuery] = useState("");
-  const [totalGuests, setTotalGuests] = useState(0);
+  const [guests, setGuests] = useState({adults: 0, children: 0});
 
   function openSearchBar() {
     setIsSearchBarOpened(true);
@@ -31,8 +31,8 @@ function App() {
         isSearchBarOpened={isSearchBarOpened}
         selectedSubcontainer={selectedSubcontainer}
         setSelectedSubcontainer={setSelectedSubcontainer}
-        totalGuests={totalGuests}
-        setTotalGuests={setTotalGuests}
+        guests={guests}
+        setGuests={setGuests}
         locationQuery={locationQuery}
         setLocationQuery={setLocationQuery}
       ></Header>
