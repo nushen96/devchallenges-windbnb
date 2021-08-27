@@ -4,9 +4,9 @@ import PinIcon from "@iconscout/react-unicons/icons/uil-map-marker";
 import { useState } from "react";
 
 const cities = [
-  "Helsinki, Findland",
-  "Turku, Findland",
-  "Oulu, Findland",
+  "Helsinki, Finland",
+  "Turku, Finland",
+  "Oulu, Finland",
   "Vassa, Finland",
 ];
 
@@ -79,7 +79,7 @@ const SearchBarSubcontainer = styled.div`
   }
 
   & > p {
-    color: ${props => props.totalGuests>0 ? "inherit":"var(--gray3)"};
+    color: ${(props) => (props.totalGuests > 0 ? "inherit" : "var(--gray3)")};
     font-size: 90%;
   }
 
@@ -170,7 +170,7 @@ const GuestCategory = ({ title, description, guests, setGuests }) => {
   const countGuests = (value) => {
     let newValue = guests[categoryKey] + value;
     if (newValue >= 0) {
-      setGuests({...guests, [categoryKey]:newValue});
+      setGuests({ ...guests, [categoryKey]: newValue });
     }
   };
   return (
@@ -196,7 +196,7 @@ const GuestCategory = ({ title, description, guests, setGuests }) => {
 };
 
 const SearchBar = (props) => {
-  const totalGuests = Object.values(props.guests).reduce((a, b) => a + b)
+  const totalGuests = Object.values(props.guests).reduce((a, b) => a + b);
   return (
     <GlobalContainer {...props}>
       <SearchBarContainer {...props}>
@@ -213,7 +213,7 @@ const SearchBar = (props) => {
             }}
             type="text"
             placeholder="Search a city"
-            onChange={e => props.setLocationQuery(e.target.value)}
+            onChange={(e) => props.setLocationQuery(e.target.value)}
             value={props.locationQuery}
           />
         </SearchBarSubcontainer>
@@ -227,9 +227,10 @@ const SearchBar = (props) => {
             props.setSelectedSubcontainer("guests");
           }}
         >
-          <p
-          >
-            {totalGuests>0 ? `${totalGuests} guest${totalGuests>1?"s":""}` : "Add guests"}
+          <p>
+            {totalGuests > 0
+              ? `${totalGuests} guest${totalGuests > 1 ? "s" : ""}`
+              : "Add guests"}
           </p>
         </SearchBarSubcontainer>
         <SearchBarSubcontainer {...props}>
@@ -243,26 +244,31 @@ const SearchBar = (props) => {
       {props.isSearchBarOpened && (
         <SearchBarDetailsContainer>
           <div>
-            {props.selectedSubcontainer==="location" && cities.map((city) => (
-              <p
-                key={city}
-                style={{ cursor: "pointer" }}
-                onClick={() => props.setSelectedLocation(city)}
-              >
-                <PinIcon></PinIcon> {city}
-              </p>
-            ))}
+            {props.selectedSubcontainer === "location" &&
+              cities.map((city) => (
+                <p
+                  key={city}
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    props.setSelectedLocation(city);
+                    props.setLocationQuery(city);
+                  }}
+                >
+                  <PinIcon></PinIcon> {city}
+                </p>
+              ))}
           </div>
           <div>
-            {props.selectedSubcontainer==="guests" && categories.map((category) => (
-              <GuestCategory
-                key={category.title}
-                title={category.title}
-                description={category.description}
-                guests={props.guests}
-                setGuests={props.setGuests}
-              ></GuestCategory>
-            ))}
+            {props.selectedSubcontainer === "guests" &&
+              categories.map((category) => (
+                <GuestCategory
+                  key={category.title}
+                  title={category.title}
+                  description={category.description}
+                  guests={props.guests}
+                  setGuests={props.setGuests}
+                ></GuestCategory>
+              ))}
           </div>
           <div></div>
         </SearchBarDetailsContainer>
