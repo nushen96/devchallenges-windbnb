@@ -201,7 +201,7 @@ const SearchBar = (props) => {
   useEffect(() => {
     setFilteredCities(
       cities.filter((city) =>
-        city.toLowerCase().includes(props.locationQuery.toLowerCase())
+        city.split(',')[0].toLowerCase().includes(props.locationQuery.toLowerCase())
       ).slice(0,4)
     );
   },[props.locationQuery]);
