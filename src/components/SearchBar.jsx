@@ -1,7 +1,7 @@
 import styled from "styled-components/macro";
 import SearchIcon from "@iconscout/react-unicons/icons/uil-search";
 import PinIcon from "@iconscout/react-unicons/icons/uil-map-marker";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const cities = [
   "Helsinki, Finland",
@@ -196,6 +196,16 @@ const GuestCategory = ({ title, description, guests, setGuests }) => {
 };
 
 const SearchBar = (props) => {
+  const [filteredCities, setFilteredCities] = useState(cities.slice(0,4));
+
+  useEffect(() => {
+    setFilteredCities(
+      cities.filter((city) =>
+        city.toLowerCase().includes(props.locationQuery.toLowerCase())
+      ).slice(0,4)
+    );
+  },[props.locationQuery]);
+
   const totalGuests = Object.values(props.guests).reduce((a, b) => a + b);
   return (
     <GlobalContainer {...props}>
@@ -245,7 +255,7 @@ const SearchBar = (props) => {
         <SearchBarDetailsContainer>
           <div>
             {props.selectedSubcontainer === "location" &&
-              cities.map((city) => (
+              filteredCities.map((city) => (
                 <p
                   key={city}
                   style={{ cursor: "pointer" }}
