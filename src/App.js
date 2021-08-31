@@ -1,14 +1,15 @@
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 import Overlay from "./components/Overlay";
+import Stay from "./components/Stays";
 import { useState } from "react";
 
 function App() {
   const [isSearchBarOpened, setIsSearchBarOpened] = useState(false);
   const [selectedSubcontainer, setSelectedSubcontainer] = useState("");
   const [locationQuery, setLocationQuery] = useState("");
-  const [selectedLocation, setSelectedLocation] = useState("")
-  const [guests, setGuests] = useState({adults: 0, children: 0});
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [guests, setGuests] = useState({ adults: 0, children: 0 });
 
   function openSearchBar() {
     setIsSearchBarOpened(true);
