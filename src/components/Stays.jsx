@@ -34,7 +34,7 @@ const Stay = ({ superHost, type, beds, title, rating, photo }) => {
           {superHost && (
             <span
               style={{
-                padding: "1rem",
+                padding: "0.5rem",
                 borderRadius: "12px",
                 marginRight: "1rem",
                 border: "1px solid #4f4f4f",
