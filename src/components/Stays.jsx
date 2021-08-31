@@ -77,7 +77,7 @@ const StaysHeader = styled.div`
 const StaysContent = styled.div`
     display: grid;
     grid-template-columns: repeat( auto-fill, minmax(30%, 1fr) );
-    column-gap: 1rem;
+    column-gap: 1.5rem;
 `;
 
 const Stays = ({ staysTitle, stays }) => {
