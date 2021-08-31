@@ -3,7 +3,7 @@ import StarIcon from "@iconscout/react-unicons/icons/uil-star";
 
 const StayImage = styled.img`
   width: 100%;
-  heigth: auto;
+  height: 300px;
   border-radius: 10px;
 `;
 
@@ -17,11 +17,11 @@ const StayDetails = styled.div`
 const StayTitle = styled.h3`
   font-weight: 600;
   font-size: 120%;
-  margin-top: 1.5rem;
+  margin-top: 1rem;
 `;
 
 const StayContainer = styled.div`
-  flex: 1 0 21%;
+  flex: 0 0 31%;
   margin-bottom: 2rem;
 `;
 
@@ -65,32 +65,38 @@ const Stay = ({ superHost, type, beds, title, rating, photo }) => {
 
 const StaysContainer = styled.div`
   flex: 1;
+  margin-top: 2rem;
 `;
 
 const StaysHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 2rem;
 `;
 
 const StaysContent = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  column-gap: auto;
+  justify-content: space-between;
 `;
 
-const Stays = ({ staysTitle, stays = [] }) => {
-  <StaysContainer>
-    <StaysHeader>
-      <h2>{staysTitle}</h2>
-      <p>{stays.length}</p>
-    </StaysHeader>
-    <StaysContent>
-      {stays.map((stay) => {
-        <Stay key={stay.title} {...stay}></Stay>;
-      })}
-    </StaysContent>
-  </StaysContainer>;
+const Stays = ({ staysTitle, stays }) => {
+  console.log(stays);
+  return (
+    <StaysContainer className="row">
+      <StaysHeader>
+        <h2>{staysTitle}</h2>
+        <p>{stays.length} stays</p>
+      </StaysHeader>
+      <StaysContent>
+        {stays.map((stay) => (
+          <Stay {...stay} key={stay.title}></Stay>
+        ))}
+      </StaysContent>
+    </StaysContainer>
+  );
 };
 
 export default Stays;
