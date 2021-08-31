@@ -81,7 +81,6 @@ const StaysContent = styled.div`
 `;
 
 const Stays = ({ staysTitle, stays }) => {
-  console.log(stays);
   return (
     <StaysContainer className="row">
       <StaysHeader>

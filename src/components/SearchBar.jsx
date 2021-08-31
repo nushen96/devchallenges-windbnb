@@ -22,18 +22,6 @@ const SearchBarContainer = styled.div`
   flex: 1;
 `;
 
-const SearchFormElement = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  flex: 1;
-  ${(props) =>
-    props.isSearchBarOpened &&
-    `
-    flex: 0;
-`}
-`;
-
 const SearchBarSubcontainer = styled.div`
   padding: 1rem;
   border-left: 1px solid #f2f2f2;
