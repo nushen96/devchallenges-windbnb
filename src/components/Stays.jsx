@@ -25,10 +25,10 @@ const StayContainer = styled.div`
   margin-bottom: 2rem;
 `;
 
-const Stay = ({ superHost, type, beds, title, stars, image, starred }) => {
+const Stay = ({ superHost, type, beds, title, rating, photo }) => {
   return (
     <StayContainer>
-      <StayImage src={image} alt={title}></StayImage>
+      <StayImage src={photo} alt={title}></StayImage>
       <StayDetails>
         <p>
           {superHost && (
@@ -40,7 +40,7 @@ const Stay = ({ superHost, type, beds, title, stars, image, starred }) => {
                 border: "1px solid #4f4f4f",
                 color: "#4f4f4f",
                 fontWeight: 700,
-                fontSize: "90%"
+                fontSize: "90%",
               }}
             >
               SUPER HOST
@@ -49,9 +49,13 @@ const Stay = ({ superHost, type, beds, title, stars, image, starred }) => {
           {type}
           {beds && `, ${beds} bed(s)`}
         </p>
-        <span style={{display: "flex", alignItems: "center"}}>
-          <StarIcon size="1rem" color="#EB5757" style={{marginRight: "0.2rem"}} />
-          {stars}
+        <span style={{ display: "flex", alignItems: "center" }}>
+          <StarIcon
+            size="1rem"
+            color="#EB5757"
+            style={{ marginRight: "0.2rem" }}
+          />
+          {rating}
         </span>
       </StayDetails>
       <StayTitle>{title}</StayTitle>
@@ -59,4 +63,34 @@ const Stay = ({ superHost, type, beds, title, stars, image, starred }) => {
   );
 };
 
-export default Stay;
+const StaysContainer = styled.div`
+  flex: 1;
+`;
+
+const StaysHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const StaysContent = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+`;
+
+const Stays = ({ staysTitle, stays = [] }) => {
+  <StaysContainer>
+    <StaysHeader>
+      <h2>{staysTitle}</h2>
+      <p>{stays.length}</p>
+    </StaysHeader>
+    <StaysContent>
+      {stays.map((stay) => {
+        <Stay key={stay.title} {...stay}></Stay>;
+      })}
+    </StaysContent>
+  </StaysContainer>;
+};
+
+export default Stays;
