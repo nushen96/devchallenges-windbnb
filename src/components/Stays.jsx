@@ -21,7 +21,6 @@ const StayTitle = styled.h3`
 `;
 
 const StayContainer = styled.div`
-  flex: 0 0 31%;
   margin-bottom: 2rem;
 `;
 
@@ -76,10 +75,9 @@ const StaysHeader = styled.div`
 `;
 
 const StaysContent = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: auto;
-  justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat( auto-fill, minmax(30%, 1fr) );
+    column-gap: 1rem;
 `;
 
 const Stays = ({ staysTitle, stays }) => {
