@@ -47,7 +47,7 @@ const Stay = ({ superHost, type, beds, title, rating, photo }) => {
             </span>
           )}
           {type}
-          {beds && `, ${beds} bed(s)`}
+          {beds && `, ${beds} bed${beds>1? "s" : ""}`}
         </p>
         <span style={{ display: "flex", alignItems: "center" }}>
           <StarIcon

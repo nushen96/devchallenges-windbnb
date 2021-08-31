@@ -196,15 +196,40 @@ const GuestCategory = ({ title, description, guests, setGuests }) => {
 };
 
 const SearchBar = (props) => {
-  const [filteredCities, setFilteredCities] = useState(cities.slice(0,4));
+  const [filteredCities, setFilteredCities] = useState(cities.slice(0, 4));
 
   useEffect(() => {
     setFilteredCities(
-      cities.filter((city) =>
-        city.split(',')[0].toLowerCase().includes(props.locationQuery.toLowerCase())
-      ).slice(0,4)
+      cities
+        .filter((city) =>
+          city
+            .split(",")[0]
+            .toLowerCase()
+            .includes(props.locationQuery.toLowerCase())
+        )
+        .slice(0, 4)
     );
-  },[props.locationQuery]);
+  }, [props.locationQuery]);
+
+  function searchStays() {
+    const correspondingStays = props.stays.filter((stay) => {
+      let doesLocationMatch = false;
+      if (props.selectedLocation) {
+        doesLocationMatch =
+          stay.city === props.selectedLocation.split(", ")[0] &&
+          stay.country === props.selectedLocation.split(", ")[1];
+      } else {
+        doesLocationMatch = stay.city
+          .toLowerCase()
+          .includes(props.locationQuery.toLowerCase());
+      }
+      return (
+        Object.values(props.guests).reduce((a, b) => a + b) <= stay.maxGuests &&
+        doesLocationMatch
+      );
+    });
+    props.setFilteredStays(correspondingStays);
+  }
 
   const totalGuests = Object.values(props.guests).reduce((a, b) => a + b);
   return (
@@ -244,7 +269,7 @@ const SearchBar = (props) => {
           </p>
         </SearchBarSubcontainer>
         <SearchBarSubcontainer {...props}>
-          <button>
+          <button onClick={() => searchStays()}>
             <SearchIcon
               color={props.isSearchBarOpened ? "#FFF" : "#EB5757"}
             ></SearchIcon>

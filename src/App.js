@@ -11,6 +11,7 @@ function App() {
   const [locationQuery, setLocationQuery] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("");
   const [guests, setGuests] = useState({ adults: 0, children: 0 });
+  const [filteredStays, setFilteredStays] = useState(stays)
 
   function openSearchBar() {
     setIsSearchBarOpened(true);
@@ -40,8 +41,10 @@ function App() {
         setLocationQuery={setLocationQuery}
         selectedLocation={selectedLocation}
         setSelectedLocation={setSelectedLocation}
+        stays={stays}
+        setFilteredStays={setFilteredStays}
       ></Header>
-      <Stays staysTitle={`Stays in ${selectedLocation || "Finland"}`} stays={stays}></Stays>
+      <Stays staysTitle={`Stays in ${selectedLocation || "Finland"}`} stays={filteredStays}></Stays>
     </>
   );
 }
