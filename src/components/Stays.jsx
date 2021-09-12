@@ -18,6 +18,9 @@ const StayTitle = styled.h3`
   font-weight: 600;
   font-size: 120%;
   margin-top: 1rem;
+  @media (max-width: 768px) {
+    margin-top: 0.5rem;
+  }
 `;
 
 const StayContainer = styled.div`
@@ -78,6 +81,11 @@ const StaysContent = styled.div`
     display: grid;
     grid-template-columns: repeat( auto-fill, minmax(30%, 1fr) );
     column-gap: 1.5rem;
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+    }
+
 `;
 
 const Stays = ({ staysTitle, stays }) => {
