@@ -3,7 +3,7 @@ import SearchBar from "./components/SearchBar";
 import Overlay from "./components/Overlay";
 import Stays from "./components/Stays";
 import { useState } from "react";
-import {stays} from './utils/stays'
+import { stays } from "./utils/stays";
 
 function App() {
   const [isSearchBarOpened, setIsSearchBarOpened] = useState(false);
@@ -11,7 +11,7 @@ function App() {
   const [locationQuery, setLocationQuery] = useState("");
   const [selectedLocation, setSelectedLocation] = useState("");
   const [guests, setGuests] = useState({ adults: 0, children: 0 });
-  const [filteredStays, setFilteredStays] = useState(stays)
+  const [filteredStays, setFilteredStays] = useState(stays);
 
   function openSearchBar() {
     setIsSearchBarOpened(true);
@@ -44,7 +44,24 @@ function App() {
         stays={stays}
         setFilteredStays={setFilteredStays}
       ></Header>
-      <Stays staysTitle={`Stays in ${selectedLocation || "Finland"}`} stays={filteredStays}></Stays>
+      <Stays
+        staysTitle={`Stays in ${selectedLocation || "Finland"}`}
+        stays={filteredStays}
+      ></Stays>
+      <footer
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "90%",
+          margin: "1rem 0",
+          color: "var(--gray3)"
+        }}
+      >
+        <p>
+          Made with fierce by <b>Papi Diagne</b> - devChallenges.io
+        </p>
+      </footer>
     </>
   );
 }
