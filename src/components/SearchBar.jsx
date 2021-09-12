@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import styled, { css } from "styled-components/macro";
 import SearchIcon from "@iconscout/react-unicons/icons/uil-search";
 import PinIcon from "@iconscout/react-unicons/icons/uil-map-marker";
 import { useState, useEffect } from "react";
@@ -15,11 +15,43 @@ const categories = [
   { title: "Children", description: "Ages 2 - 12" },
 ];
 
+const buttonStyles = css`
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  ${(props) =>
+    props.isSearchBarOpened &&
+    `
+    display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background-color: #EB5757;
+  color: #fff;
+  border-radius: 1rem;
+  gap: 0.5rem;
+  &::after {
+    content: "Search";
+  }
+`}
+`;
+
 const SearchBarContainer = styled.div`
   border-radius: 1rem;
   display: flex;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
   flex: 1;
+  @media (max-width: 768px) {
+    & > div:last-child {
+      display: none;
+    }
+    ${(props) =>
+      props.isSearchBarOpened &&
+      `
+        flex-direction: column;
+    `}
+  }
 `;
 
 const SearchBarSubcontainer = styled.div`
@@ -72,23 +104,7 @@ const SearchBarSubcontainer = styled.div`
   }
 
   & > button {
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
-    ${(props) =>
-      props.isSearchBarOpened &&
-      `
-      display: flex;
-      align-items: center;
-      padding: 0.5rem 1rem;
-      background-color: #EB5757;
-      color: #fff;
-      border-radius: 1rem;
-      gap: 0.5rem;
-      &::after {
-        content: "Search";
-      }
-    `}
+    ${buttonStyles}
   }
   ${(props) =>
     !props.active &&
@@ -99,6 +115,9 @@ const SearchBarSubcontainer = styled.div`
     border-right: none;
   }
   `}
+  @media (max-width: 768px) {
+    padding: 0.8rem;
+  }
 `;
 
 const SearchBarDetailsContainer = styled.div`
@@ -120,11 +139,36 @@ const SearchBarDetailsContainer = styled.div`
     align-items: center;
     gap: 1rem;
   }
+
+  @media (max-width: 768px) {
+    & > div {
+      flex: unset;
+    }
+    ${(props) =>
+      props.selectedSubcontainer === "location" &&
+      `
+      & > div:first-child {
+        flex-basis: 50%;
+        flex: 1;
+      }  
+    `}
+    ${(props) =>
+      props.selectedSubcontainer === "guests" &&
+      `
+      & > div:nth-child(2) {
+        order: -1;
+        flex: 1;
+      }  
+    `}
+  }
 `;
 
 const GlobalContainer = styled.div`
   display: flex;
   max-width: 35%;
+  & > .mobileButtonContainer {
+    display: none;
+  }
   ${(props) =>
     props.isSearchBarOpened &&
     `
@@ -133,6 +177,23 @@ const GlobalContainer = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   width: 100%;`}
+
+  @media (max-width: 768px) {
+    max-width: 90%;
+    margin: 0 auto;
+    ${(props) =>
+      props.isSearchBarOpened &&
+      `
+      & > .mobileButtonContainer {
+        display: flex;
+        justify-content: center;
+      }
+      
+      & > .mobileButtonContainer button {
+        ${buttonStyles}
+      }
+    `}
+  }
 `;
 
 const GuestCategoryContainer = styled.div`
@@ -265,7 +326,7 @@ const SearchBar = (props) => {
         </SearchBarSubcontainer>
       </SearchBarContainer>
       {props.isSearchBarOpened && (
-        <SearchBarDetailsContainer>
+        <SearchBarDetailsContainer {...props}>
           <div>
             {props.selectedSubcontainer === "location" &&
               filteredCities.map((city) => (
@@ -296,6 +357,13 @@ const SearchBar = (props) => {
           <div></div>
         </SearchBarDetailsContainer>
       )}
+      <div className="mobileButtonContainer">
+        <button onClick={() => searchStays()}>
+          <SearchIcon
+            color={props.isSearchBarOpened ? "#FFF" : "#EB5757"}
+          ></SearchIcon>
+        </button>
+      </div>
     </GlobalContainer>
   );
 };

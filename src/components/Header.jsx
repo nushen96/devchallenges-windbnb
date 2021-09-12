@@ -20,6 +20,12 @@ const NavBar = styled.nav`
     align-items: flex-start;
     padding: 2rem 5% 1rem;
   `}
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
 `;
 
 const Header = (props) => {
