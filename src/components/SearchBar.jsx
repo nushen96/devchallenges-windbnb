@@ -96,11 +96,18 @@ const SearchBarSubcontainer = styled.div`
     width: 100%;
     border: none;
     outline: none;
+    font-size: inherit;
+  }
+
+  & > input::-webkit-input-placeholder,
+  & > input::-moz-placeholder,
+  & > input::-ms-input-placeholder {
+    font-size: inherit;
+    color: inherit;
   }
 
   & > p {
     color: ${(props) => (props.totalGuests > 0 ? "inherit" : "var(--gray3)")};
-    font-size: 90%;
   }
 
   & > button {
