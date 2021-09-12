@@ -43,13 +43,13 @@ const SearchBarContainer = styled.div`
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.1);
   flex: 1;
   @media (max-width: 768px) {
-    & > div:last-child {
-      display: none;
-    }
     ${(props) =>
       props.isSearchBarOpened &&
       `
         flex-direction: column;
+        & > div:last-child {
+          display: none;
+        }
     `}
   }
 `;
